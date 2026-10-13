@@ -110,7 +110,10 @@ section{padding:88px 0}
 .media-col figure{margin:0}
 .media-col figcaption{font-size:.86rem;color:var(--muted);margin-top:8px}
 .shot{border-radius:var(--radius-lg);overflow:hidden;background:var(--line);border:1px solid var(--line)}
-@media (max-width:900px){.method{grid-template-columns:1fr;gap:14px}}
+.figure-wide{grid-column:2 / -1;margin:8px 0 0}
+.figure-wide figcaption{font-size:.86rem;color:var(--muted);margin-top:10px;max-width:60em}
+.shot.paper{background:#fff;padding:clamp(10px,2.5vw,28px);border-color:var(--line)}
+@media (max-width:900px){.method{grid-template-columns:1fr;gap:14px}.figure-wide{grid-column:auto}}
 
 .video{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;cursor:pointer;border:0;padding:0;width:100%;display:block}
 .video img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:opacity .2s}
@@ -295,11 +298,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
           </ul>
           <p>For more details see our <a href="https://www.biorxiv.org/content/10.1101/534313v1">current publication</a>.</p>
         </div>
-        <div class="media-col">
-          <figure>
-            <div class="shot"><img src="img/maze-task.png" alt="The high-throughput spatial memory task setup" loading="lazy" data-fallback></div>
-          </figure>
-        </div>
+        <figure class="figure-wide">
+          <a class="shot paper" href="img/maze-task.png" title="Open full size" style="display:block"><img src="img/maze-task.png" width="1024" height="384" style="width:100%;height:auto" alt="(a) The 70 cm circular arena with eight water ports around its wall and a mouse inside. (b) Two example trials over time: the sound cue, trigger zone and water reward signals, with maps of the mouse seeking the trigger zone and then the reward port." loading="lazy" data-fallback></a>
+          <figcaption>(a) The circular arena with eight reward ports. (b) Two trials, one incorrect and one correct: the mouse enters the trigger zone, a sound cue plays, and it must go to the right port for a water reward.</figcaption>
+        </figure>
       </article>
 
       <article class="method">
