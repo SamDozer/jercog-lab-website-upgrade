@@ -70,21 +70,30 @@ p{margin:0 0 1em}
 }
 
 /* ---------- Hero ---------- */
-.hero{padding:72px 0 56px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.position-pill{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;text-decoration:none;padding:6px 14px 6px 8px;border-radius:999px;background:var(--gcamp-soft);color:var(--ink);margin-bottom:28px}
-.position-pill .dot{width:10px;height:10px;border-radius:50%;background:var(--gcamp);box-shadow:0 0 0 4px color-mix(in srgb, var(--gcamp) 25%, transparent)}
-.hero h1{font-size:clamp(2.9rem,6.6vw,5.4rem);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-bottom:28px}
-.hero h1 span{display:block;font-weight:400;color:var(--muted)}
-.hero .lede{font-size:1.16rem;max-width:34em;color:var(--ink)}
-.hero .affil{color:var(--muted);font-size:.98rem;margin-top:20px}
+/* The hero always sits on the lab's fluorescence brain-section image, so it is dark in both themes */
+.hero{padding:0 0 80px;color:#EEF6F2;background:#040807}
+.hero-banner{position:relative;isolation:isolate;display:flex;align-items:center;height:clamp(320px, 32.7vw, 640px);background:#040807 url(img/banner.jpg) center / cover no-repeat}
+.hero-banner::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg, transparent 70%, #040807 100%),
+  linear-gradient(90deg, rgba(4,8,7,.6) 0%, rgba(4,8,7,.25) 50%, transparent 75%)}
+.hero-banner .wrap{width:100%}
+.hero-banner h1{margin-bottom:0}
+.hero-body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:center;margin-top:36px}
+.hero-body .arena{max-width:440px;justify-self:end;width:100%;margin:0}
+.position-pill{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;text-decoration:none;padding:6px 14px 6px 8px;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;margin-bottom:28px;backdrop-filter:blur(6px)}
+.position-pill:hover{color:#fff;background:rgba(255,255,255,.2)}
+.position-pill .dot{width:10px;height:10px;border-radius:50%;background:#3DD68C;box-shadow:0 0 0 4px rgba(61,214,140,.28)}
+.hero h1{font-size:clamp(2.9rem,6.6vw,5.4rem);font-weight:700;letter-spacing:-.035em;line-height:.98;margin-bottom:28px;text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.hero h1 span{display:block;font-weight:400;color:rgba(238,246,242,.72)}
+.hero .lede{font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.5;max-width:30em}
+.hero .affil{color:rgba(238,246,242,.7);font-size:.98rem;margin-top:20px}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-.btn{display:inline-block;font:600 .95rem var(--body);text-decoration:none;padding:12px 20px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn.primary:hover{background:var(--gcamp);border-color:var(--gcamp);color:#fff}
-.btn:not(.primary):hover{border-color:var(--gcamp);color:var(--gcamp)}
+.btn{display:inline-block;font:600 .95rem var(--body);text-decoration:none;padding:12px 20px;border-radius:999px;border:1.5px solid rgba(238,246,242,.7);color:#EEF6F2}
+.btn.primary{background:#EEF6F2;border-color:#EEF6F2;color:#0A1412}
+.btn.primary:hover{background:#3DD68C;border-color:#3DD68C;color:#0A1412}
+.btn:not(.primary):hover{border-color:#3DD68C;color:#3DD68C}
 
-.arena{background:var(--deep);border-radius:28px;padding:18px;color:var(--deep-ink);position:relative}
+.arena{background:rgba(6,22,21,.5);border:1px solid rgba(238,246,242,.14);backdrop-filter:blur(10px);border-radius:28px;padding:18px;color:#E6F2EE;position:relative}
 .arena canvas{width:100%;aspect-ratio:1/1;display:block}
 .arena figcaption{font-size:.82rem;opacity:.75;padding:10px 6px 2px;line-height:1.45}
 .arena .traces{width:100%;height:84px;display:block;margin-top:6px}
@@ -227,7 +236,7 @@ details.more[open] summary::after{content:"–"}
 footer{padding:36px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
 
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:40px}.hero{padding-top:44px}}
+@media (max-width:900px){.hero-body{grid-template-columns:1fr;gap:40px}.hero-body .arena{justify-self:stretch;max-width:none}.hero-banner{height:auto;min-height:320px;padding:40px 0}.hero-banner::before{background:linear-gradient(180deg, rgba(4,8,7,.3) 0%, rgba(4,8,7,.45) 60%, #040807 100%)}}
 </style>
 </head>
 <body>
@@ -253,10 +262,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="wrap">
-    <div>
+  <div class="hero-banner" role="img" aria-label="Fluorescence image of a mouse brain section showing the hippocampus on both sides">
+    <div class="wrap">
       <a class="position-pill" href="#contact"><span class="dot" aria-hidden="true"></span>Open position: get in touch</a>
       <h1>Computational neuroscience <span>of memory</span></h1>
+    </div>
+  </div>
+  <div class="wrap hero-body">
+    <div>
       <p class="lede">We study how long-term information is encoded in the brain, with a focus on associative spatial memory. We combine high-throughput behaviour, large-scale neural recordings in freely moving mice, and machine learning.</p>
       <p class="affil">Pablo Jercog Team · Instituto Cajal, CSIC · Madrid</p>
       <div class="actions">
